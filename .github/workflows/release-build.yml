@@ -1,0 +1,50 @@
+name: Build main and push to bernhardjordan.space
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        working-directory: ./
+        run: npm ci
+
+      - name: Build Vue app
+        working-directory: ./
+        run: npm run build
+
+      - name: Deploy dist to bernhardjordan.space branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: bernhardjordan.space
+          publish_dir: ./.output/public
+          force_orphan: true
+          commit_message: 'GitHub Action: build from main ${{ github.sha }}'
+
+      - name: Deploy to Uberspace via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          server: ${{ secrets.UBERSPACE_HOST }}
+          port: 22
+          username: ${{ secrets.UBERSPACE_USER }}
+          ssh_private_key: ${{ secrets.UBERSPACE_SSH_KEY }}
+          local_path: ./.output/public
+          remote_path: '/var/www/virtual/${{ secrets.UBERSPACE_USER }}/bernhardjordan.space'
+          sftp_only: true
+          delete_remote_files: true
