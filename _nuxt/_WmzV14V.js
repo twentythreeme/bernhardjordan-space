@@ -1,0 +1,1 @@
+import{_ as a,c as l,o,a as e,r as t}from"./nYfLyJMr.js";const s={};function d(n,r){return o(),l("div",null,[r[0]||(r[0]=e("header",null,[e("h1",null,"Bernhard Jordan")],-1)),e("main",null,[t(n.$slots,"default")])])}const u=a(s,[["render",d]]);export{u as default};
