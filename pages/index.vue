@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Index</h1>
+    <h3>under construction</h3>
   </div>
 </template>
 

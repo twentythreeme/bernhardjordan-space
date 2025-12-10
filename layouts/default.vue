@@ -1,8 +1,7 @@
 <template>
   <div>
     <header>
-      <h1>Meine App.</h1>
-      <h2>TEST</h2>
+      <h1>Bernhard Jordan</h1>
     </header>
     <main>
       <slot />
