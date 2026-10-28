@@ -1,0 +1,1 @@
+import{_ as n,c as o,a as t,o as r}from"./BR72KzI5.js";const s={name:"Index"};function a(c,e,d,l,i,p){return r(),o("div",null,[...e[0]||(e[0]=[t("h3",null,"under construction for a while",-1)])])}const f=n(s,[["render",a]]);export{f as default};
